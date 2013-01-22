@@ -35,6 +35,6 @@ def crosswikis():
 
 if __name__ == '__main__':
   if app.config['DEBUG']:
-    app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True)
   else:
     app.run(host='0.0.0.0')
