@@ -1,0 +1,59 @@
+body {
+  font-family: 'Open Sans', Sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  color: #007bad;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1.title {
+  background-color: #eee;
+  border-bottom: 1px solid #ddd;
+  height: 2em;
+  margin: 0px 0px 15px 0px;
+  padding-left: 50px;
+  font-size: 2em;
+  line-height: 2em;
+}
+
+h2 {
+  font-size: 1.3em;
+  margin: 0px;
+}
+
+.elem {
+  margin-bottom: 5px;
+}
+
+#content {
+  margin: 0px;
+  padding: 0px 50px;
+}
+
+table.data {
+  border-spacing: 0;
+}
+
+table.data td {
+  padding: 2px 5px;
+}
+
+table.data th {
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+.bigForm .label, .bigForm input[type="text"], .bigForm input[type="submit"] {
+  font-size: 1.5em;
+}
+
+table.data tr:nth-child(even) {
+  background-color: #eee;
+}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body %}
+  <form action="{{ url_for('crosswikis') }}" method="get" class="elem bigForm">
+    <span class="label">Search for entities:</span>
+    <input type="text" size=30 name="arg">
+    <input type="submit" value="Search">
+  </form>
+  {% if entities != None %}
+    <h2 class="elem">Results</h2>
+    {% if entities is zerolength %}
+      <span class="elem">No results</span>
+    {% else %}
+      <table class="elem data">
+        <tr><th>Entity</th><th>Probability</th><th>Count</th></tr>
+        {% for entity in entities %}
+          <tr>
+            <td>
+              <a href="http://en.wikipedia.org/wiki/{{ entity.title }}">
+                {{ entity.title }}
+              </a>
+            </td>
+            <td>{{ entity.cprob }}</td>
+            <td>{{ entity.count }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+  {% endif %}
+{% endblock %}
