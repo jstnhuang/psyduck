@@ -6,6 +6,7 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 def isZeroLength(obj):
+  """Jinja2 test for zero-length objects."""
   return len(obj) == 0
 app.jinja_env.tests['zerolength'] = isZeroLength
 
