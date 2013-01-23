@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+
+{% block head %}
+  <script src="{{ url_for('static', filename='js/jquery-1.9.0.min.js') }}">
+  </script>
+  <script src="{{ url_for('static', filename='js/crosswikis.js') }}">
+  </script>
+  <script>$(document).ready(init);</script>
+{% endblock %}
+
 {% block body %}
   <form action="{{ url_for('crosswikis') }}" method="get" class="elem bigForm">
     <span class="label">Search for entities:</span>
@@ -10,10 +19,30 @@
     {% if entities is zerolength %}
       <span class="elem">No results</span>
     {% else %}
-      <table class="elem data">
+      <div id="filters">
+        <h3>Filters</h3>
+        <form action="" name="filters">
+          <ul class="horizList">
+            <li>
+              <span class="label">Probability</span>
+              <input id="cprobSlider" type="range" min="0" max="1"
+                step="0.05" value="0"
+              />
+              <span id="cprobValue" class="rangeValue">&ge; 0</span>
+            </li>
+            <li>
+              <span class="label">Count</span>
+              <input id="countSlider" type="range" min="0" max="2500"
+                step="100" value="0"
+              />
+              <span id="countValue" class="rangeValue">&ge; 0</span>
+            </li>
+        </form>
+      </div>
+      <table id="entityList" class="elem data">
         <tr><th>Entity</th><th>Probability</th><th>Count</th></tr>
         {% for entity in entities %}
-          <tr>
+          <tr class="entity">
             <td>
               <a href="http://en.wikipedia.org/wiki/{{ entity.title }}">
                 {{ entity.title }}

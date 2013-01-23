@@ -25,12 +25,14 @@ def crosswikis():
     return render_template(
       'crosswikis.html',
       title='Crosswikis lookup',
+      scripts=['jquery-1.9.0.min.js', 'crosswikis.js'],
       entities=entities
     )
   else:
     return render_template(
       'crosswikis.html',
       title='Crosswikis lookup',
+      scripts=['jqeury-1.9.0.min.js'],
       entities=None
     )
 
