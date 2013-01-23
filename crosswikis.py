@@ -10,18 +10,26 @@ def getEntityDistribution(dbPath, arg):
   if arg == None or arg == '':
     return []
   arg = getLnrm(arg)
-  print arg
   db = sqlite3.connect(dbPath)
   cursor = db.execute(
     ('SELECT entity, cprob, info from crosswikis '
     'WHERE anchor=? '
-    'ORDER BY cprob DESC'),
+    'ORDER BY cprob DESC LIMIT 10000'),
     (arg,)
   ) 
-  entities = [
-    dict(title=row[0], cprob=float(row[1]), count=getCount(row[2]))
-    for row in cursor.fetchall()
-  ]
+  entities = []
+  while True:
+    try:
+      row = cursor.fetchone()
+      if row == None:
+        break
+      entities.append(dict(
+        title=row[0],
+        cprob=float(row[1]),
+        count=getCount(row[2])
+      ))
+    except sqlite3.OperationalError:
+      continue
   db.close()
   return entities
 
@@ -51,5 +59,3 @@ def getCount(info):
         numerator = int(counts.split('/')[0])
         count += numerator
   return count
-
-
